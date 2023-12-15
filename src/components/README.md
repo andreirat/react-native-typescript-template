@@ -14,6 +14,8 @@ The components are categorized based on functionality and reusability. The categ
 
 ``Common``: These are generic, reusable UI elements like buttons, inputs, and text.
 
+``Icons``: These are SVG icons that are used throughout the application.
+
 ``Navigation``: These are components that help with navigation, such as tabs, drawers, and menus.
 
 ``Composed``: These are components that are composed by multiple common components, such as: InputWithLabel, ButtonWithIcon, etc.
@@ -42,3 +44,47 @@ Each component has its own folder containing:
 - A style file (`style.ts`)
 - An optional test file (`ComponentName.test.tsx`)
 - Any other assets or utilities specific to the component (`e.g. utils.ts`)
+
+## Icons
+
+### Using SVG Icons
+
+To use SVG icons in a React Native application, follow these steps:
+
+1. **Download the SVG Icon**: Obtain the SVG file for the icon you wish to use.
+2. **Create an Icon Component**: In the `components/Icons` folder, create a new component for the icon. Place the SVG code inside this component.
+3. **Import SVG from `react-native-svg`**: Use the `Svg` and related elements (`Path`, `Rect`, etc.) from `react-native-svg` to render the SVG icon.
+4. **Use the Icon Component**: Import and use the icon component wherever needed in the application.
+
+### Example: Creating an SVG Icon Component
+
+```javascript
+import React from 'react';
+import Svg, { Path } from 'react-native-svg';
+
+const MyIcon: React.FC = ({height, width, color}: { height: number, width: number, color: string}) => (
+  <Svg width={width} height={height} viewBox="0 0 24 24" fill="none">
+    <Path d="M..." fill={color}/>
+  </Svg>
+);
+
+export default MyIcon;
+```
+
+In this example, replace `"M..."` with the actual path data from your SVG file. The `Svg` component and its children (`Path`, `Rect`, etc.) are used to replicate the SVG structure.
+
+### Example: Using an SVG Icon Component
+
+```javascript
+import React from 'react';
+
+import MyIcon from 'path_to_component/MyIcon';
+
+const MyComponent: React.FC = () => (
+  <View>
+    <MyIcon height={20} width={20} color={20} />
+  </View>
+);
+
+export default MyComponent;
+```
